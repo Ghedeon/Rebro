@@ -1,4 +1,6 @@
 # Rebro
+
+[![Join the chat at https://gitter.im/REalmBROwser/Lobby](https://badges.gitter.im/REalmBROwser/Lobby.svg)](https://gitter.im/REalmBROwser/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Realm Browser for Android Studio
 
 ## Install
