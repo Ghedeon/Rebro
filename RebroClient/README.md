@@ -16,7 +16,7 @@ repositories {
 ...
 
 dependencies {
-    debugCompile 'com.ghedeon:rebro-client:0.1.1'
+    debugCompile 'com.ghedeon:rebro-client:0.1'
 }
 ```
 ## Usage
@@ -27,3 +27,5 @@ Well... use it! No additional setup is required.
 
 ## License
 GNU GPLv3
+
+http://www.gnu.org/licenses/gpl-3.0.txt

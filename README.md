@@ -1,6 +1,6 @@
-# Rebro
-
 [![Join the chat at https://gitter.im/REalmBROwser/Lobby](https://badges.gitter.im/REalmBROwser/Lobby.svg)](https://gitter.im/REalmBROwser/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+# Rebro
 Realm Browser for Android Studio
 
 ## Install
@@ -35,8 +35,6 @@ A broadcast intent is send by Rebro plugin via ADB in order to communicate the s
 _Alternatively, an UDP autodiscovering technique might be used in order to identify the WS Server._
 
 JSON RPC (backed by json-smart) is used in order to formalize the protocol and handle serialization/deserialization routine.
-
-![](rebro_table.png)
 
 ### Libraries used
 WebSockets: https://github.com/TooTallNate/Java-WebSocket
