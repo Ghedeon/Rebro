@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.ghedeon.rebro">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        >
+
+        <receiver
+            android:name="com.ghedeon.rebro.RebroReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.vv.rebro.action.CONNECT"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.ghedeon.rebro.RebroService"
+            android:exported="false">
+        </service>
+
+    </application>
+
+</manifest>

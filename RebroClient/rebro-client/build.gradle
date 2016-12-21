@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+apply plugin: 'realm-android'
+apply plugin: 'com.novoda.bintray-release'
+
+Properties props = new Properties()
+props.load(file("version.properties").newDataInputStream())
+props.each { prop ->
+    project.ext.set(prop.key, prop.value)
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.1"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'org.java-websocket:Java-WebSocket:1.3.0'
+    compile 'com.thetransactioncompany:jsonrpc2-base:1.38'
+}
+
+publish {
+    bintrayUser = BINTRAY_USER
+    bintrayKey = BINTRAY_KEY
+    dryRun = true
+    autoPublish = false
+    userOrg = 'ghedeon'
+    groupId = 'com.ghedeon'
+    artifactId = 'rebro-client'
+    uploadName = 'rebro-client'
+    publishVersion = '0.1'
+    desc = 'Realm Browser Client'
+    website = 'https://github.com/Ghedeon/Rebro'
+    licences = ['GNU GPLv3']
+}
