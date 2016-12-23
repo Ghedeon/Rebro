@@ -2,7 +2,6 @@ package com.ghedeon.rebro;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Message;
 import com.thetransactioncompany.jsonrpc2.JSONRPC2Notification;
@@ -30,7 +29,7 @@ class WsClient extends WebSocketClient {
     private static final String DEVICE_NAME_PARAM = "DEVICE_NAME";
 
     @NonNull
-    private final RealmManager realmManager;
+    private final IRealmManager realmManager;
     @Nullable
     private OnSocketClosedListener listener;
     @NonNull
@@ -42,7 +41,7 @@ class WsClient extends WebSocketClient {
         void onSocketClosed();
     }
 
-    WsClient(@NonNull final String serverIP, @NonNull final RealmManager realmManager, @NonNull final String deviceName) {
+    WsClient(@NonNull final String serverIP, @NonNull final IRealmManager realmManager, @NonNull final String deviceName) {
         super(URI.create("ws://" + serverIP + ":" + SERVER_PORT));
         if (BuildConfig.DEBUG) {
             WebSocketImpl.DEBUG = true;
@@ -54,7 +53,7 @@ class WsClient extends WebSocketClient {
     @Override
     public void onOpen(@NonNull final ServerHandshake handshakedata) {
         Thread.currentThread().setName("WsClientThread");
-        Log.d(TAG, "connection opened: " + handshakedata.getHttpStatusMessage());
+//        Log.d(TAG, "connection opened: " + handshakedata.getHttpStatusMessage());
         connectionId = UUID.randomUUID().toString();
         sendConnectRequest();
     }
@@ -70,8 +69,8 @@ class WsClient extends WebSocketClient {
 
     @Override
     public void onMessage(@NonNull final String message) {
-        Log.d(TAG, "received: " + message);
-
+//        Log.d(TAG, "received: " + message);
+        System.out.println(message);
         try {
             final JSONRPC2Message jsonMessage = JSONRPC2Message.parse(message);
             if (jsonMessage instanceof JSONRPC2Request) {
@@ -98,7 +97,7 @@ class WsClient extends WebSocketClient {
                 listResponse.setTables(RTables);
                 final JSONRPC2Response response = new JSONRPC2Response(listResponse, request.getID());
                 send(response.toString());
-                Log.d(TAG, "send: " + response.toString());
+//                Log.d(TAG, "send: " + response.toString());
                 break;
             default:
         }
@@ -127,12 +126,12 @@ class WsClient extends WebSocketClient {
 
         final JSONRPC2Notification pushNotification = new JSONRPC2Notification(RpcMethod.PUSH.name(), params);
         send(pushNotification.toString());
-        Log.d(TAG, "pushAll: " + pushNotification.toString());
+//        Log.d(TAG, "pushAll: " + pushNotification.toString());
     }
 
     @Override
     public void onClose(final int code, @NonNull final String reason, final boolean remote) {
-        Log.i(TAG, "connection closed by " + (remote ? "remote peer" : "us"));
+//        Log.d(TAG, "connection closed by " + (remote ? "remote peer" : "us"));
         realmManager.close();
         if (listener != null) {
             listener.onSocketClosed();

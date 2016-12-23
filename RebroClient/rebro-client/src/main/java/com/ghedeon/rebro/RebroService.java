@@ -74,7 +74,7 @@ public class RebroService extends Service {
                 @Override
                 public void run() {
                     realmManager = new RealmManager();
-                    realmManager.setOnDataChangeListener(new RealmManager.DataChangedListener() {
+                    realmManager.setOnDataChangeListener(new IRealmManager.DataChangedListener() {
                         @Override
                         public void onDataChanged() {
                             pushAll();

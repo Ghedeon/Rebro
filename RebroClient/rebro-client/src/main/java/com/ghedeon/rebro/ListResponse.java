@@ -5,7 +5,10 @@ import android.support.annotation.Nullable;
 
 import java.util.List;
 
-class ListResponse {
+/**
+ * public modifiers because of stupid error from json-smart in test fixture.
+ */
+public class ListResponse {
 
     @Nullable
     private String connectionId;
@@ -14,28 +17,28 @@ class ListResponse {
     private String dbName;
 
     @Nullable
-    String getConnectionId() {
+    public String getConnectionId() {
         return connectionId;
     }
 
-    void setConnectionId(@NonNull final String connectionId) {
+    public void setConnectionId(@NonNull final String connectionId) {
         this.connectionId = connectionId;
     }
 
     @Nullable
-    List<RTable> getTables() {
+    public List<RTable> getTables() {
         return tables;
     }
 
-    void setTables(@NonNull final List<RTable> tables) {
+    public void setTables(@NonNull final List<RTable> tables) {
         this.tables = tables;
     }
 
-    String getDbName() {
+    public String getDbName() {
         return dbName;
     }
 
-    void setDbName(final String dbName) {
+    public void setDbName(final String dbName) {
         this.dbName = dbName;
     }
 }

@@ -18,19 +18,13 @@ import io.realm.RealmObjectSchema;
 import io.realm.RealmSchema;
 import io.realm.internal.Table;
 
-final class RealmManager {
+final class RealmManager implements IRealmManager {
 
     @NonNull
     private final String realmFileName;
     private DynamicRealm dynamicRealm;
     private DataChangedListener dataChangedListener;
     private final Handler handler;
-
-    interface DataChangedListener {
-
-        void onDataChanged();
-
-    }
 
     RealmManager() {
         final RealmConfiguration configuration = Realm.getDefaultInstance().getConfiguration();
@@ -46,11 +40,11 @@ final class RealmManager {
     }
 
     @NonNull
-    String getRealmFileName() {
+    public String getRealmFileName() {
         return realmFileName;
     }
 
-    void setOnDataChangeListener(final DataChangedListener dataChangedListener) {
+    public void setOnDataChangeListener(final DataChangedListener dataChangedListener) {
         this.dataChangedListener = dataChangedListener;
     }
 
@@ -185,7 +179,7 @@ final class RealmManager {
         return type;
     }
 
-    void close() {
+    public void close() {
         handler.post(new Runnable() {
             @Override
             public void run() {
